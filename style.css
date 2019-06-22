@@ -141,4 +141,8 @@ table {
     border: 1px solid #222;
     height: 100px;
     background-color: white;
+    font-size: 30px;
+    text-align: center;
+    line-height: 100px;
+    cursor: pointer;
 }
