@@ -1,10 +1,4 @@
-const gameBoard = (() => {
-	var boardArray = [ 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x' ];
 
-	return {
-		boardArray
-	};
-})();
 
 var playerXmoves = [];
 var playerOmoves = [];
