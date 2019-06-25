@@ -81,12 +81,10 @@ const gameBoard = (() => {
 })();
 
 const checkScore = (moves, player) => {
-	//starts checking on the third move
 	if (
-		(moves.length >= 3 &&
-			//checking all of the wining patterns
+		//checking all of the wining patterns
 
-			(moves.indexOf(1) !== -1 && moves.indexOf(2) !== -1 && moves.indexOf(3) !== -1)) ||
+		(moves.indexOf(1) !== -1 && moves.indexOf(2) !== -1 && moves.indexOf(3) !== -1) ||
 		(moves.indexOf(4) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(6) !== -1) ||
 		(moves.indexOf(7) !== -1 && moves.indexOf(8) !== -1 && moves.indexOf(9) !== -1) ||
 		(moves.indexOf(1) !== -1 && moves.indexOf(4) !== -1 && moves.indexOf(7) !== -1) ||
@@ -99,6 +97,7 @@ const checkScore = (moves, player) => {
 		console.log(player + ' Wins');
 		popUp.style.display = 'block';
 		popUpText.textContent = player + ' Wins';
+		//Tie
 	} else if (moves.length === 5) {
 		console.log('Tie');
 		popUp.style.display = 'block';
