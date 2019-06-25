@@ -36,6 +36,7 @@ for (let i = 0; i < 9; i++) {
 }
 */
 
+//Do it like RockPaper.. so the computer play can be implemented or with If (if computer = active... ), use .click() for computer play
 const gameBoard = (() => {
 	let player1 = 'active';
 	let player2 = 'not active';
@@ -52,7 +53,6 @@ const gameBoard = (() => {
 			var cells = document.getElementsByClassName('cell');
 			cells[i].style.backgroundColor = 'white';
 			cells[i].id = i + 1;
-
 			cells[i].addEventListener('click', () => {
 				if (cells[i].style.backgroundColor === 'white' && player1 === 'active') {
 					cells[i].style.backgroundColor = 'red';
@@ -82,25 +82,27 @@ const gameBoard = (() => {
 
 const checkScore = (moves, player) => {
 	//starts checking on the third move
-	if (moves.length >= 3 && moves.length < 5) {
-		//checking all of the wining patterns
-		if (
-			(moves.indexOf(1) !== -1 && moves.indexOf(2) !== -1 && moves.indexOf(3) !== -1) ||
-			(moves.indexOf(4) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(6) !== -1) ||
-			(moves.indexOf(7) !== -1 && moves.indexOf(8) !== -1 && moves.indexOf(9) !== -1) ||
-			(moves.indexOf(1) !== -1 && moves.indexOf(4) !== -1 && moves.indexOf(7) !== -1) ||
-			(moves.indexOf(2) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(8) !== -1) ||
-			(moves.indexOf(3) !== -1 && moves.indexOf(6) !== -1 && moves.indexOf(9) !== -1) ||
-			(moves.indexOf(4) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(6) !== -1) ||
-			(moves.indexOf(1) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(9) !== -1) ||
-			(moves.indexOf(3) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(7) !== -1)
-		) {
-			console.log(player + ' Wins');
-			popUp.style.display = 'block';
-		}
+	if (
+		(moves.length >= 3 &&
+			//checking all of the wining patterns
+
+			(moves.indexOf(1) !== -1 && moves.indexOf(2) !== -1 && moves.indexOf(3) !== -1)) ||
+		(moves.indexOf(4) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(6) !== -1) ||
+		(moves.indexOf(7) !== -1 && moves.indexOf(8) !== -1 && moves.indexOf(9) !== -1) ||
+		(moves.indexOf(1) !== -1 && moves.indexOf(4) !== -1 && moves.indexOf(7) !== -1) ||
+		(moves.indexOf(2) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(8) !== -1) ||
+		(moves.indexOf(3) !== -1 && moves.indexOf(6) !== -1 && moves.indexOf(9) !== -1) ||
+		(moves.indexOf(4) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(6) !== -1) ||
+		(moves.indexOf(1) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(9) !== -1) ||
+		(moves.indexOf(3) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(7) !== -1)
+	) {
+		console.log(player + ' Wins');
+		popUp.style.display = 'block';
+		popUpText.textContent = player + ' Wins';
 	} else if (moves.length === 5) {
 		console.log('Tie');
 		popUp.style.display = 'block';
+		popUpText.textContent = 'Tie';
 	}
 };
 
@@ -110,6 +112,7 @@ startButton.addEventListener('click', () => {
 });
 
 var popUp = document.getElementById('popUp');
+var popUpText = document.getElementById('popUpText');
 
 var popUpButton = document.getElementById('popUpButton');
 popUpButton.addEventListener('click', () => {
