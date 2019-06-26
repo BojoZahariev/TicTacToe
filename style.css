@@ -129,11 +129,22 @@ table {
     border-spacing: 0;
 }
 
+
+body {
+    text-align: center;
+}
+
+#startButton {
+    width: 100px;
+
+}
+
+
 #gameContainer {
     display: flex;
     flex-flow: wrap;
     width: 400px;
-    margin: 200px auto;
+    margin: 100px auto;
 }
 
 .cell {
@@ -150,7 +161,7 @@ table {
 #popUp {
     display: none;
 
-    margin: auto;
+    margin: 10px;
     position: absolute;
     width: 300px;
     height: 300px;
