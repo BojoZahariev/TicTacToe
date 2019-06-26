@@ -96,7 +96,7 @@ const gameBoard = (() => {
 					player2 = 'active';
 					playerXmoves.push(Number(cells[i].id));
 					checkScore(playerXmoves, 'X');
-					console.log('player1' + playerXmoves);
+					console.log('player1 ' + playerXmoves);
 				}
 
 				if (player2 === 'active') {
@@ -108,7 +108,7 @@ const gameBoard = (() => {
 					player2 = 'not active';
 					playerOmoves.push(Number(cells[compCell].id));
 					checkScore(playerOmoves, 'O');
-					console.log('player2' + playerOmoves);
+					console.log('player2 ' + playerOmoves);
 				}
 			});
 		}
