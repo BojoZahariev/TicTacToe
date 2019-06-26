@@ -100,15 +100,21 @@ const gameBoard = (() => {
 				}
 
 				if (player2 === 'active') {
-					let compCell = computerPlay();
-					cells[compCell].style.backgroundColor = 'blue';
-					console.log('ha');
+					var allPlayedNumbers = playerXmoves.concat(playerOmoves);
+					console.log('allPlayedNumbers ' + allPlayedNumbers);
 
-					player1 = 'active';
-					player2 = 'not active';
-					playerOmoves.push(Number(cells[compCell].id));
-					checkScore(playerOmoves, 'O');
-					console.log('player2 ' + playerOmoves);
+					let compCellChoice = computerPlay(allPlayedNumbers);
+					console.log('compCellChoice' + compCellChoice);
+
+					if ((cells[compCellChoice].style.backgroundColor = 'white')) {
+						cells[compCellChoice].style.backgroundColor = 'blue';
+
+						player1 = 'active';
+						player2 = 'not active';
+						playerOmoves.push(Number(cells[compCellChoice].id));
+						checkScore(playerOmoves, 'O');
+						console.log('player2 ' + playerOmoves);
+					}
 				}
 			});
 		}
@@ -161,9 +167,31 @@ popUpButton.addEventListener('click', () => {
 var form = document.getElementById('myForm');
 
 //Computer play
-function computerPlay() {
-	var myArray = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
-	return myArray[Math.floor(Math.random() * myArray.length)];
+function computerPlay(myArray) {
+	var allCells = [ 1, 2, 3, 4, 5, 6, 7, 8 ];
+
+	allCells = allCells.filter(function(e) {
+		return this.indexOf(e) < 0;
+	}, myArray);
+	console.log('allCells' + allCells);
+
+	/*
+	for (let i = 0; i < myArray.length; i++) {
+		if (allCells.indexOf(myArray[i]) !== -1) {
+			console.log('spliced number ' + myArray[i]);
+			allCells.splice(myArray[i - 1], 1);
+			console.log('allCells' + allCells);
+		}
+	}
+	*/
+	return allCells[Math.floor(Math.random() * allCells.length)];
 }
 
-console.log(computerPlay());
+/*
+var allCells = [ 1, 2, 3, 4, 5, 6, 7, 8 ];
+var test = [ 1, 2 ];
+filtered = allCells.filter(function(e) {
+	return this.indexOf(e) < 0;
+}, test);
+console.log(filtered);
+*/
