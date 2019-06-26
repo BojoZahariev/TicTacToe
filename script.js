@@ -103,7 +103,7 @@ const gameBoard = (() => {
 					var allPlayedNumbers = playerXmoves.concat(playerOmoves);
 					console.log('allPlayedNumbers ' + allPlayedNumbers);
 
-					let compCellChoice = computerPlay(allPlayedNumbers);
+					let compCellChoice = computerPlay(allPlayedNumbers) - 1;
 					console.log('compCellChoice' + compCellChoice);
 
 					if ((cells[compCellChoice].style.backgroundColor = 'white')) {
@@ -168,12 +168,12 @@ var form = document.getElementById('myForm');
 
 //Computer play
 function computerPlay(myArray) {
-	var allCells = [ 1, 2, 3, 4, 5, 6, 7, 8 ];
+	var allCells = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
 
-	allCells = allCells.filter(function(e) {
+	var filtered = allCells.filter(function(e) {
 		return this.indexOf(e) < 0;
 	}, myArray);
-	console.log('allCells' + allCells);
+	console.log('filtered' + filtered);
 
 	/*
 	for (let i = 0; i < myArray.length; i++) {
@@ -184,7 +184,7 @@ function computerPlay(myArray) {
 		}
 	}
 	*/
-	return allCells[Math.floor(Math.random() * allCells.length)];
+	return filtered[Math.floor(Math.random() * filtered.length)];
 }
 
 /*
