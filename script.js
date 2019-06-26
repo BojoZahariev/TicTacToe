@@ -75,15 +75,54 @@ const gameBoard = (() => {
 		}
 	};
 
+	//Computer play
+	const gameStartComp = () => {
+		playerXmoves = [];
+		playerOmoves = [];
+
+		player1 = 'active';
+		player2 = 'not active';
+
+		for (let i = 0; i < 9; i++) {
+			var cells = document.getElementsByClassName('cell');
+			cells[i].style.backgroundColor = 'white';
+			cells[i].id = i + 1;
+
+			cells[i].addEventListener('click', () => {
+				if (cells[i].style.backgroundColor === 'white' && player1 === 'active') {
+					cells[i].style.backgroundColor = 'red';
+
+					player1 = 'not active';
+					player2 = 'active';
+					playerXmoves.push(Number(cells[i].id));
+					checkScore(playerXmoves, 'X');
+					console.log('player1' + playerXmoves);
+				}
+
+				if (player2 === 'active') {
+					let compCell = computerPlay();
+					cells[compCell].style.backgroundColor = 'blue';
+					console.log('ha');
+
+					player1 = 'active';
+					player2 = 'not active';
+					playerOmoves.push(Number(cells[compCell].id));
+					checkScore(playerOmoves, 'O');
+					console.log('player2' + playerOmoves);
+				}
+			});
+		}
+	};
+
 	return {
-		gameStart
+		gameStart,
+		gameStartComp
 	};
 })();
 
 const checkScore = (moves, player) => {
 	if (
 		//checking all of the wining patterns
-
 		(moves.indexOf(1) !== -1 && moves.indexOf(2) !== -1 && moves.indexOf(3) !== -1) ||
 		(moves.indexOf(4) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(6) !== -1) ||
 		(moves.indexOf(7) !== -1 && moves.indexOf(8) !== -1 && moves.indexOf(9) !== -1) ||
@@ -107,7 +146,7 @@ const checkScore = (moves, player) => {
 
 var startButton = document.getElementById('startButton');
 startButton.addEventListener('click', () => {
-	gameBoard.gameStart();
+	gameBoard.gameStartComp();
 });
 
 var popUp = document.getElementById('popUp');
@@ -119,6 +158,9 @@ popUpButton.addEventListener('click', () => {
 	popUp.style.display = 'none';
 });
 
+var form = document.getElementById('myForm');
+
+//Computer play
 function computerPlay() {
 	var myArray = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
 	return myArray[Math.floor(Math.random() * myArray.length)];
