@@ -150,8 +150,16 @@ const checkScore = (moves, player) => {
 	}
 };
 
+//Two players
 var startButton = document.getElementById('startButton');
 startButton.addEventListener('click', () => {
+	gameBoard.gameStar();
+});
+
+
+//Play with computer
+var startButtonComp = document.getElementById('startButtonComp');
+startButtonComp.addEventListener('click', () => {
 	gameBoard.gameStartComp();
 });
 
@@ -168,30 +176,13 @@ var form = document.getElementById('myForm');
 
 //Computer play
 function computerPlay(myArray) {
-	var allCells = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
+	var allCells = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-	var filtered = allCells.filter(function(e) {
+	allCells = allCells.filter(function (e) {
 		return this.indexOf(e) < 0;
 	}, myArray);
-	console.log('filtered' + filtered);
+	console.log('allCells' + allCells);
 
-	/*
-	for (let i = 0; i < myArray.length; i++) {
-		if (allCells.indexOf(myArray[i]) !== -1) {
-			console.log('spliced number ' + myArray[i]);
-			allCells.splice(myArray[i - 1], 1);
-			console.log('allCells' + allCells);
-		}
-	}
-	*/
-	return filtered[Math.floor(Math.random() * filtered.length)];
+
+	return allCells[Math.floor(Math.random() * allCells.length)];
 }
-
-/*
-var allCells = [ 1, 2, 3, 4, 5, 6, 7, 8 ];
-var test = [ 1, 2 ];
-filtered = allCells.filter(function(e) {
-	return this.indexOf(e) < 0;
-}, test);
-console.log(filtered);
-*/
