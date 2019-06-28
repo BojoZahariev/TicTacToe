@@ -179,16 +179,41 @@ const gameFlow = (() => {
 	var cellId = (n) => {
 		if (allMoves[n - 1] === '' && turn === 'playerXturn') {
 			allMoves.splice(n - 1, 1, 'X');
-			console.log(allMoves);
+			playerXmoves.push(n);
+			console.log(playerXmoves);
 			turn = 'playerOturn';
 			gameBoard.displayGame();
+			checkScore(playerXmoves, 'X');
 		} else if (allMoves[n - 1] === '' && turn === 'playerOturn') {
 			allMoves.splice(n - 1, 1, 'O');
+			playerOmoves.push(n);
 			turn = 'playerXturn';
 			gameBoard.displayGame();
-			console.log(allMoves);
+			console.log(playerOmoves);
+			checkScore(playerOmoves, 'O');
 		}
 		return n;
+	};
+
+	const checkScore = (moves, player) => {
+		if (
+			//checking all of the wining patterns
+			(moves.indexOf(1) !== -1 && moves.indexOf(2) !== -1 && moves.indexOf(3) !== -1) ||
+			(moves.indexOf(4) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(6) !== -1) ||
+			(moves.indexOf(7) !== -1 && moves.indexOf(8) !== -1 && moves.indexOf(9) !== -1) ||
+			(moves.indexOf(1) !== -1 && moves.indexOf(4) !== -1 && moves.indexOf(7) !== -1) ||
+			(moves.indexOf(2) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(8) !== -1) ||
+			(moves.indexOf(3) !== -1 && moves.indexOf(6) !== -1 && moves.indexOf(9) !== -1) ||
+			(moves.indexOf(4) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(6) !== -1) ||
+			(moves.indexOf(1) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(9) !== -1) ||
+			(moves.indexOf(3) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(7) !== -1)
+		) {
+			alert(player + ' Wins');
+
+			//Tie
+		} else if (moves.length === 5) {
+			alert(' Tie');
+		}
 	};
 
 	return {
@@ -196,7 +221,8 @@ const gameFlow = (() => {
 		playerXmoves,
 		playerOmoves,
 		cellId,
-		turn
+		turn,
+		checkScore
 	};
 })();
 
