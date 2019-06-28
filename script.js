@@ -144,4 +144,54 @@ function computerPlay(myArray) {
 	return allCells[Math.floor(Math.random() * allCells.length)];
 }
 
-function playComputer() {}
+/*
+const Player = (mark) => {
+	const getMark = () => mark;
+	const move = () => {};
+	return {
+		getMark,
+		move
+	};
+};
+
+const playerX = Player('X');
+const playerO = Player('O');
+
+const gameBoard = (() => {
+	var cells = document.getElementsByClassName('cell');
+	var displayGame = () => {
+		for (i = 0; i < cells.length; i++) {
+			cells[i].textContent = gameFlow.playerXmoves[i];
+		}
+	};
+
+	return {
+		cells,
+		displayGame
+	};
+})();
+
+const gameFlow = (() => {
+	let playerXmoves = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
+	let playerOmoves = [];
+
+	var cellId = (n) => {
+		playerXmoves.splice(n - 1, 1, 'X');
+		console.log(playerXmoves);
+		gameBoard.displayGame();
+		return n;
+	};
+
+	return {
+		playerXmoves,
+		playerOmoves,
+		cellId
+	};
+})();
+
+var cells = document.getElementsByClassName('cell');
+
+var startButtonComp = document.getElementById('startButtonComp');
+startButtonComp.addEventListener('click', () => {});
+*/
+
