@@ -159,6 +159,7 @@ const playerO = Player('O');
 
 const gameBoard = (() => {
 	const cells = document.getElementsByClassName('cell');
+
 	const displayGame = () => {
 		for (i = 0; i < cells.length; i++) {
 			cells[i].textContent = gameFlow.allMoves[i];
@@ -175,7 +176,10 @@ const gameFlow = (() => {
 	let allMoves = [ '', '', '', '', '', '', '', '', '' ];
 	let playerXmoves = [];
 	let playerOmoves = [];
-	let turn = 'playerXturn';
+	let turn = '';
+	let getTurn = (a) => {
+		turn = a;
+	};
 	var cellId = (n) => {
 		if (allMoves[n - 1] === '' && turn === 'playerXturn') {
 			allMoves.splice(n - 1, 1, 'X');
@@ -219,18 +223,27 @@ const gameFlow = (() => {
 		playerXmoves,
 		playerOmoves,
 		cellId,
+		getTurn,
 		turn,
 		checkScore
 	};
 })();
 
 var startButtonComp = document.getElementById('startButtonComp');
-startButtonComp.addEventListener('click', () => {
-	cells[0].removeEventListener('click', gameFlow.cellId);
-});
+startButtonComp.addEventListener('click', () => {});
 
 var startButton = document.getElementById('startButton');
 startButton.addEventListener('click', () => {});
+
+var XButton = document.getElementById('XButton');
+XButton.addEventListener('click', () => {
+	gameFlow.getTurn('playerXturn');
+});
+
+var OButton = document.getElementById('OButton');
+OButton.addEventListener('click', () => {
+	gameFlow.getTurn('playerOturn');
+});
 
 */
 
