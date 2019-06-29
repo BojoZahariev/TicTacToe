@@ -133,13 +133,6 @@ body {
 	text-align: center;
 }
 
-#startButton {
-	width: 100px;
-}
-
-#myForm {
-	margin-top: 20px;
-}
 
 #gameContainer {
 	display: flex;
@@ -147,6 +140,8 @@ body {
 	width: 400px;
 	margin: 100px auto;
 }
+
+
 
 .cell {
 	flex-basis: 32%;
@@ -157,14 +152,4 @@ body {
 	text-align: center;
 	line-height: 100px;
 	cursor: pointer;
-}
-
-#popUp {
-	display: none;
-
-	margin: 10px;
-	position: absolute;
-	width: 300px;
-	height: 300px;
-	background-color: aqua;
 }
