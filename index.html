@@ -11,32 +11,23 @@
 </head>
 
 <body>
-    <button id="startButton">START</button>
-    <button id="startButtonComp">START WITH COMP</button>
 
-    <div id="popUp">
-        <p id="popUpText"></p>
-        <button id="popUpButton">New game</button>
-    </div>
-
-    <form id="myForm">
-        <input type="text" placeholder="PlayerX" value=""><br>
-        <input type="text" placeholder="PlayerO" value=""><br>
-    </form>
-
+    <button id="XButton">X</button>
+    <button id="OButton">O</button>
 
     <div id="gameContainer">
-        <p class="cell" id="1">1</p>
-        <p class="cell">2</p>
-        <p class="cell">3</p>
-        <p class="cell">4</p>
-        <p class="cell">5</p>
-        <p class="cell">6</p>
-        <p class="cell">7</p>
-        <p class="cell">8</p>
-        <p class="cell">9</p>
+        <p class="cell" onclick="gameFlow.cellId(1)">1</p>
+        <p class="cell" onclick="gameFlow.cellId(2)">2</p>
+        <p class="cell" onclick="gameFlow.cellId(3)">3</p>
+        <p class="cell" onclick="gameFlow.cellId(4)">4</p>
+        <p class="cell" onclick="gameFlow.cellId(5)">5</p>
+        <p class="cell" onclick="gameFlow.cellId(6)">6</p>
+        <p class="cell" onclick="gameFlow.cellId(7)">7</p>
+        <p class="cell" onclick="gameFlow.cellId(8)">8</p>
+        <p class="cell" onclick="gameFlow.cellId(9)">9</p>
     </div>
 
+    <p id="message"></p>
 
     <script src="script.js"></script>
 </body>
