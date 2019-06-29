@@ -158,41 +158,56 @@ const playerX = Player('X');
 const playerO = Player('O');
 
 const gameBoard = (() => {
-	const cells = document.getElementsByClassName('cell');
+	var message = document.getElementById('message');
+	var XButton = document.getElementById('XButton');
+	var OButton = document.getElementById('OButton');
 
-	const displayGame = () => {
-		for (i = 0; i < cells.length; i++) {
-			cells[i].textContent = gameFlow.allMoves[i];
-		}
+	const Xevent = () => {
+		XButton.style.color = 'red';
+		OButton.style.color = 'black';
+
+		gameFlow.getTurn('playerXturn');
 	};
 
-	var XButton = document.getElementById('XButton');
-	XButton.addEventListener('click', () => {
-		gameFlow.getTurn('playerXturn');
-	});
+	XButton.addEventListener('click', Xevent);
 
-	var OButton = document.getElementById('OButton');
-	OButton.addEventListener('click', () => {
+	const Oevent = () => {
+		OButton.style.color = 'red';
+		XButton.style.color = 'black';
+
 		gameFlow.computerTurn('X');
-	});
+	};
 
-	var message = document.getElementById('message');
+	OButton.addEventListener('click', Oevent);
+
+	var restart = document.getElementById('restart');
+	restart.addEventListener('click', () => {
+		OButton.style.color = 'black';
+		XButton.style.color = 'black';
+
+		gameFlow.reset();
+		gameFlow.displayGame();
+		message.textContent = '';
+	});
 
 	return {
-		cells,
-		displayGame,
 		XButton,
+		Xevent,
 		OButton,
-		message
+		Oevent,
+		message,
+		restart
 	};
 })();
 
 const gameFlow = (() => {
 	let allMoves = [ '', '', '', '', '', '', '', '', '' ];
+	let cells = document.getElementsByClassName('cell');
 	let playerXmoves = [];
 	let playerOmoves = [];
 	let turn = '';
-	let getTurn = (a) => {
+	let AI = 'alive';
+	const getTurn = (a) => {
 		turn = a;
 	};
 	var cellId = (n) => {
@@ -200,14 +215,14 @@ const gameFlow = (() => {
 			allMoves.splice(n - 1, 1, 'X');
 			playerXmoves.push(n);
 			turn = 'playerOturn';
-			gameBoard.displayGame();
+			displayGame();
 			checkScore(playerXmoves, 'X');
 			computerTurn('O');
 		} else if (allMoves[n - 1] === '' && turn === 'playerOturn') {
 			allMoves.splice(n - 1, 1, 'O');
 			playerOmoves.push(n);
 			turn = 'playerXturn';
-			gameBoard.displayGame();
+			displayGame();
 			checkScore(playerOmoves, 'O');
 			computerTurn('X');
 		}
@@ -215,21 +230,23 @@ const gameFlow = (() => {
 	};
 
 	const computerTurn = (mark) => {
-		var allPlayedNumbers = playerXmoves.concat(playerOmoves);
-		//computer choice
-		let compCellChoice = computerPlay(allPlayedNumbers) - 1;
-		allMoves.splice(compCellChoice, 1, mark);
-		if (mark === 'X') {
-			playerXmoves.push(compCellChoice + 1);
-			checkScore(playerXmoves, 'X');
-			getTurn('playerOturn');
-		} else if (mark === 'O') {
-			playerOmoves.push(compCellChoice + 1);
-			checkScore(playerOmoves, 'O');
-			getTurn('playerXturn');
-		}
+		if (AI === 'alive') {
+			var allPlayedNumbers = playerXmoves.concat(playerOmoves);
+			//computer choice
+			let compCellChoice = computerPlay(allPlayedNumbers) - 1;
+			allMoves.splice(compCellChoice, 1, mark);
+			if (mark === 'X') {
+				playerXmoves.push(compCellChoice + 1);
+				checkScore(playerXmoves, 'X');
+				getTurn('playerOturn');
+			} else if (mark === 'O') {
+				playerOmoves.push(compCellChoice + 1);
+				checkScore(playerOmoves, 'O');
+				getTurn('playerXturn');
+			}
 
-		gameBoard.displayGame();
+			displayGame();
+		}
 	};
 
 	const computerPlay = (myArray) => {
@@ -256,11 +273,13 @@ const gameFlow = (() => {
 			(moves.indexOf(3) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(7) !== -1)
 		) {
 			gameBoard.message.textContent = player + ' Wins';
-			reset();
+			turn = '';
+			AI = 'dead';
 			//Tie
 		} else if (moves.length === 5) {
 			gameBoard.message.textContent = ' Tie';
-			reset();
+			turn = '';
+			AI = 'dead';
 		}
 	};
 
@@ -268,7 +287,14 @@ const gameFlow = (() => {
 		allMoves = [ '', '', '', '', '', '', '', '', '' ];
 		playerXmoves = [];
 		playerOmoves = [];
+		AI = 'alive';
 		turn = '';
+	};
+
+	const displayGame = () => {
+		for (i = 0; i < cells.length; i++) {
+			cells[i].textContent = allMoves[i];
+		}
 	};
 
 	return {
@@ -281,9 +307,12 @@ const gameFlow = (() => {
 		getTurn,
 		turn,
 		checkScore,
-		reset
+		reset,
+		displayGame,
+		AI
 	};
 })();
+
 
 */
 
