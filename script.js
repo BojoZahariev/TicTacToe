@@ -158,8 +158,8 @@ const playerX = Player('X');
 const playerO = Player('O');
 
 const gameBoard = (() => {
-	var cells = document.getElementsByClassName('cell');
-	var displayGame = () => {
+	const cells = document.getElementsByClassName('cell');
+	const displayGame = () => {
 		for (i = 0; i < cells.length; i++) {
 			cells[i].textContent = gameFlow.allMoves[i];
 		}
@@ -180,7 +180,6 @@ const gameFlow = (() => {
 		if (allMoves[n - 1] === '' && turn === 'playerXturn') {
 			allMoves.splice(n - 1, 1, 'X');
 			playerXmoves.push(n);
-			console.log(playerXmoves);
 			turn = 'playerOturn';
 			gameBoard.displayGame();
 			checkScore(playerXmoves, 'X');
@@ -189,7 +188,6 @@ const gameFlow = (() => {
 			playerOmoves.push(n);
 			turn = 'playerXturn';
 			gameBoard.displayGame();
-			console.log(playerOmoves);
 			checkScore(playerOmoves, 'O');
 		}
 		return n;
@@ -226,10 +224,13 @@ const gameFlow = (() => {
 	};
 })();
 
-var cells = document.getElementsByClassName('cell');
-
 var startButtonComp = document.getElementById('startButtonComp');
-startButtonComp.addEventListener('click', () => {});
+startButtonComp.addEventListener('click', () => {
+	cells[0].removeEventListener('click', gameFlow.cellId);
+});
+
+var startButton = document.getElementById('startButton');
+startButton.addEventListener('click', () => {});
 
 */
 
