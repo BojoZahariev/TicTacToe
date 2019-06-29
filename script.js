@@ -166,9 +166,24 @@ const gameBoard = (() => {
 		}
 	};
 
+	var XButton = document.getElementById('XButton');
+	XButton.addEventListener('click', () => {
+		gameFlow.getTurn('playerXturn');
+	});
+
+	var OButton = document.getElementById('OButton');
+	OButton.addEventListener('click', () => {
+		gameFlow.computerTurn('X');
+	});
+
+	var message = document.getElementById('message');
+
 	return {
 		cells,
-		displayGame
+		displayGame,
+		XButton,
+		OButton,
+		message
 	};
 })();
 
@@ -187,14 +202,44 @@ const gameFlow = (() => {
 			turn = 'playerOturn';
 			gameBoard.displayGame();
 			checkScore(playerXmoves, 'X');
+			computerTurn('O');
 		} else if (allMoves[n - 1] === '' && turn === 'playerOturn') {
 			allMoves.splice(n - 1, 1, 'O');
 			playerOmoves.push(n);
 			turn = 'playerXturn';
 			gameBoard.displayGame();
 			checkScore(playerOmoves, 'O');
+			computerTurn('X');
 		}
 		return n;
+	};
+
+	const computerTurn = (mark) => {
+		var allPlayedNumbers = playerXmoves.concat(playerOmoves);
+		//computer choice
+		let compCellChoice = computerPlay(allPlayedNumbers) - 1;
+		allMoves.splice(compCellChoice, 1, mark);
+		if (mark === 'X') {
+			playerXmoves.push(compCellChoice + 1);
+			checkScore(playerXmoves, 'X');
+			getTurn('playerOturn');
+		} else if (mark === 'O') {
+			playerOmoves.push(compCellChoice + 1);
+			checkScore(playerOmoves, 'O');
+			getTurn('playerXturn');
+		}
+
+		gameBoard.displayGame();
+	};
+
+	const computerPlay = (myArray) => {
+		var allCells = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
+		//exclude all played cells from the pool
+		allCells = allCells.filter(function(e) {
+			return this.indexOf(e) < 0;
+		}, myArray);
+
+		return allCells[Math.floor(Math.random() * allCells.length)];
 	};
 
 	const checkScore = (moves, player) => {
@@ -210,40 +255,35 @@ const gameFlow = (() => {
 			(moves.indexOf(1) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(9) !== -1) ||
 			(moves.indexOf(3) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(7) !== -1)
 		) {
-			alert(player + ' Wins');
-
+			gameBoard.message.textContent = player + ' Wins';
+			reset();
 			//Tie
 		} else if (moves.length === 5) {
-			alert(' Tie');
+			gameBoard.message.textContent = ' Tie';
+			reset();
 		}
+	};
+
+	const reset = () => {
+		allMoves = [ '', '', '', '', '', '', '', '', '' ];
+		playerXmoves = [];
+		playerOmoves = [];
+		turn = '';
 	};
 
 	return {
 		allMoves,
 		playerXmoves,
 		playerOmoves,
+		computerTurn,
+		computerPlay,
 		cellId,
 		getTurn,
 		turn,
-		checkScore
+		checkScore,
+		reset
 	};
 })();
-
-var startButtonComp = document.getElementById('startButtonComp');
-startButtonComp.addEventListener('click', () => {});
-
-var startButton = document.getElementById('startButton');
-startButton.addEventListener('click', () => {});
-
-var XButton = document.getElementById('XButton');
-XButton.addEventListener('click', () => {
-	gameFlow.getTurn('playerXturn');
-});
-
-var OButton = document.getElementById('OButton');
-OButton.addEventListener('click', () => {
-	gameFlow.getTurn('playerOturn');
-});
 
 */
 
