@@ -1,3 +1,4 @@
+/*
 const gameFlow = (() => {
 	let player1 = 'active';
 	let player2 = 'not active';
@@ -5,7 +6,7 @@ const gameFlow = (() => {
 	let playerOmoves = [];
 
 	//Two players
-	const gameStart = () => {
+	const gameStart = (AI) => {
 		playerXmoves = [];
 		playerOmoves = [];
 
@@ -16,8 +17,8 @@ const gameFlow = (() => {
 			var cells = document.getElementsByClassName('cell');
 			cells[i].style.backgroundColor = 'white';
 			cells[i].id = i + 1;
+			console.log('AI is ' + AI);
 			cells[i].addEventListener('click', () => {
-				console.log('two players');
 				if (cells[i].style.backgroundColor === 'white' && player1 === 'active') {
 					cells[i].style.backgroundColor = 'red';
 
@@ -25,7 +26,7 @@ const gameFlow = (() => {
 					player2 = 'active';
 					playerXmoves.push(Number(cells[i].id));
 					checkScore(playerXmoves, 'X');
-				} else if (cells[i].style.backgroundColor === 'white' && player2 === 'active') {
+				} else if (cells[i].style.backgroundColor === 'white' && player2 === 'active' && AI === 'sleeping') {
 					cells[i].style.backgroundColor = 'blue';
 
 					player1 = 'active';
@@ -47,18 +48,18 @@ const gameFlow = (() => {
 		player2 = 'not active';
 
 		for (let i = 0; i < 9; i++) {
-			var cells = document.getElementsByClassName('cell');
-			cells[i].style.backgroundColor = 'white';
-			cells[i].id = i + 1;
+			var cells2 = document.getElementsByClassName('cell2');
+			cells2[i].style.backgroundColor = 'white';
+			cells2[i].id = i + 1;
 
-			cells[i].addEventListener('click', () => {
+			cells2[i].addEventListener('click', () => {
 				console.log('comp');
-				if (cells[i].style.backgroundColor === 'white' && player1 === 'active') {
-					cells[i].style.backgroundColor = 'red';
+				if (cells2[i].style.backgroundColor === 'white' && player1 === 'active') {
+					cells2[i].style.backgroundColor = 'red';
 
 					player1 = 'not active';
 					player2 = 'active';
-					playerXmoves.push(Number(cells[i].id));
+					playerXmoves.push(Number(cells2[i].id));
 					checkScore(playerXmoves, 'X');
 				}
 
@@ -68,12 +69,12 @@ const gameFlow = (() => {
 					//computer choice
 					let compCellChoice = computerPlay(allPlayedNumbers) - 1;
 					setTimeout(function() {
-						cells[compCellChoice].style.backgroundColor = 'blue';
+						cells2[compCellChoice].style.backgroundColor = 'blue';
 					}, 1000);
 
 					player1 = 'active';
 					player2 = 'not active';
-					playerOmoves.push(Number(cells[compCellChoice].id));
+					playerOmoves.push(Number(cells2[compCellChoice].id));
 					checkScore(playerOmoves, 'O');
 				}
 			});
@@ -111,7 +112,7 @@ const checkScore = (moves, player) => {
 //Two players
 var startButton = document.getElementById('startButton');
 startButton.addEventListener('click', () => {
-	gameFlow.gameStart();
+	gameFlow.gameStart('sleeping');
 });
 
 //Play with computer
@@ -144,7 +145,7 @@ function computerPlay(myArray) {
 	return allCells[Math.floor(Math.random() * allCells.length)];
 }
 
-/*
+*/
 const Player = (mark) => {
 	const getMark = () => mark;
 	const move = () => {};
@@ -312,7 +313,3 @@ const gameFlow = (() => {
 		AI
 	};
 })();
-
-
-*/
-
