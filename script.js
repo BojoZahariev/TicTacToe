@@ -162,12 +162,20 @@ const gameBoard = (() => {
 	var message = document.getElementById('message');
 	var XButton = document.getElementById('XButton');
 	var OButton = document.getElementById('OButton');
+	var startButton = document.getElementById('Start');
+
+	const startEvent = () => {
+		gameFlow.setAI('dead');
+		gameFlow.setTurn('playerXturn');
+
+	}
+	startButton.addEventListener('click', startEvent);
 
 	const Xevent = () => {
 		XButton.style.color = 'red';
 		OButton.style.color = 'black';
 
-		gameFlow.getTurn('playerXturn');
+		gameFlow.setTurn('playerXturn');
 	};
 
 	XButton.addEventListener('click', Xevent);
@@ -192,6 +200,8 @@ const gameBoard = (() => {
 	});
 
 	return {
+		startButton,
+		startEvent,
 		XButton,
 		Xevent,
 		OButton,
@@ -202,14 +212,17 @@ const gameBoard = (() => {
 })();
 
 const gameFlow = (() => {
-	let allMoves = [ '', '', '', '', '', '', '', '', '' ];
+	let allMoves = ['', '', '', '', '', '', '', '', ''];
 	let cells = document.getElementsByClassName('cell');
 	let playerXmoves = [];
 	let playerOmoves = [];
 	let turn = '';
 	let AI = 'alive';
-	const getTurn = (a) => {
+	const setTurn = (a) => {
 		turn = a;
+	};
+	const setAI = (a) => {
+		AI = a;
 	};
 	var cellId = (n) => {
 		if (allMoves[n - 1] === '' && turn === 'playerXturn') {
@@ -239,11 +252,11 @@ const gameFlow = (() => {
 			if (mark === 'X') {
 				playerXmoves.push(compCellChoice + 1);
 				checkScore(playerXmoves, 'X');
-				getTurn('playerOturn');
+				setTurn('playerOturn');
 			} else if (mark === 'O') {
 				playerOmoves.push(compCellChoice + 1);
 				checkScore(playerOmoves, 'O');
-				getTurn('playerXturn');
+				setTurn('playerXturn');
 			}
 
 			displayGame();
@@ -251,9 +264,9 @@ const gameFlow = (() => {
 	};
 
 	const computerPlay = (myArray) => {
-		var allCells = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
-		//exclude all played cells from the pool
-		allCells = allCells.filter(function(e) {
+		var allCells = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+		//exclude all played cells 
+		allCells = allCells.filter(function (e) {
 			return this.indexOf(e) < 0;
 		}, myArray);
 
@@ -285,7 +298,7 @@ const gameFlow = (() => {
 	};
 
 	const reset = () => {
-		allMoves = [ '', '', '', '', '', '', '', '', '' ];
+		allMoves = ['', '', '', '', '', '', '', '', ''];
 		playerXmoves = [];
 		playerOmoves = [];
 		AI = 'alive';
@@ -299,13 +312,14 @@ const gameFlow = (() => {
 	};
 
 	return {
+		setAI,
 		allMoves,
 		playerXmoves,
 		playerOmoves,
 		computerTurn,
 		computerPlay,
 		cellId,
-		getTurn,
+		setTurn,
 		turn,
 		checkScore,
 		reset,
