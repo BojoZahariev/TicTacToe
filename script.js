@@ -163,11 +163,21 @@ const gameBoard = (() => {
 	var XButton = document.getElementById('XButton');
 	var OButton = document.getElementById('OButton');
 	var startButton = document.getElementById('Start');
+	var startComp = document.getElementById('startComp');
+	var restart = document.getElementById('restart');
+	var choice = document.getElementById('choice');
+
+	const startCompEvent = () => {
+		choice.style.display = 'block';
+	}
+	startComp.addEventListener('click', startCompEvent);
 
 	const startEvent = () => {
 		gameFlow.setAI('dead');
 		gameFlow.setTurn('playerXturn');
-
+		OButton.style.color = 'black';
+		XButton.style.color = 'black';
+		choice.style.display = 'none';
 	}
 	startButton.addEventListener('click', startEvent);
 
@@ -189,7 +199,6 @@ const gameBoard = (() => {
 
 	OButton.addEventListener('click', Oevent);
 
-	var restart = document.getElementById('restart');
 	restart.addEventListener('click', () => {
 		OButton.style.color = 'black';
 		XButton.style.color = 'black';
@@ -202,12 +211,15 @@ const gameBoard = (() => {
 	return {
 		startButton,
 		startEvent,
+		startComp,
+		startCompEvent,
 		XButton,
 		Xevent,
 		OButton,
 		Oevent,
 		message,
-		restart
+		restart,
+		choice
 	};
 })();
 
