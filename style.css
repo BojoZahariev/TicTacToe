@@ -133,6 +133,16 @@ body {
 	text-align: center;
 }
 
+#choice {
+	display: none;
+	width: 200px;
+	height: 100px;
+	margin: 10px auto;
+}
+
+#XButton,
+#OButton {
+}
 
 #gameContainer {
 	display: flex;
@@ -140,8 +150,6 @@ body {
 	width: 400px;
 	margin: 100px auto;
 }
-
-
 
 .cell {
 	flex-basis: 32%;
