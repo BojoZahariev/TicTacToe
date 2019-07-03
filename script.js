@@ -169,7 +169,7 @@ const gameBoard = (() => {
 
 	const startCompEvent = () => {
 		choice.style.display = 'block';
-	}
+	};
 	startComp.addEventListener('click', startCompEvent);
 
 	const startEvent = () => {
@@ -178,7 +178,7 @@ const gameBoard = (() => {
 		OButton.style.color = 'black';
 		XButton.style.color = 'black';
 		choice.style.display = 'none';
-	}
+	};
 	startButton.addEventListener('click', startEvent);
 
 	const Xevent = () => {
@@ -224,7 +224,7 @@ const gameBoard = (() => {
 })();
 
 const gameFlow = (() => {
-	let allMoves = ['', '', '', '', '', '', '', '', ''];
+	let allMoves = [ '', '', '', '', '', '', '', '', '' ];
 	let cells = document.getElementsByClassName('cell');
 	let playerXmoves = [];
 	let playerOmoves = [];
@@ -236,7 +236,8 @@ const gameFlow = (() => {
 	const setAI = (a) => {
 		AI = a;
 	};
-	var cellId = (n) => {
+	var makeMove = (n) => {
+		console.log('Ding');
 		if (allMoves[n - 1] === '' && turn === 'playerXturn') {
 			allMoves.splice(n - 1, 1, 'X');
 			playerXmoves.push(n);
@@ -276,9 +277,9 @@ const gameFlow = (() => {
 	};
 
 	const computerPlay = (myArray) => {
-		var allCells = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-		//exclude all played cells 
-		allCells = allCells.filter(function (e) {
+		var allCells = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
+		//exclude all played cells
+		allCells = allCells.filter(function(e) {
 			return this.indexOf(e) < 0;
 		}, myArray);
 
@@ -310,7 +311,7 @@ const gameFlow = (() => {
 	};
 
 	const reset = () => {
-		allMoves = ['', '', '', '', '', '', '', '', ''];
+		allMoves = [ '', '', '', '', '', '', '', '', '' ];
 		playerXmoves = [];
 		playerOmoves = [];
 		AI = 'alive';
@@ -330,7 +331,7 @@ const gameFlow = (() => {
 		playerOmoves,
 		computerTurn,
 		computerPlay,
-		cellId,
+		makeMove,
 		setTurn,
 		turn,
 		checkScore,
