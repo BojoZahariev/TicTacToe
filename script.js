@@ -311,6 +311,7 @@ const gameFlow = (() => {
 			gameBoard.message.textContent = ' Tie';
 			turn = '';
 			AI = 'dead';
+			gameOver = true;
 		}
 	};
 
