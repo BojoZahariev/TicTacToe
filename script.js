@@ -206,6 +206,7 @@ const gameBoard = (() => {
 		gameFlow.reset();
 		gameFlow.displayGame();
 		message.textContent = '';
+		choice.style.display = 'none';
 	});
 
 	return {
@@ -230,6 +231,7 @@ const gameFlow = (() => {
 	let playerOmoves = [];
 	let turn = '';
 	let AI = 'alive';
+	let gameOver = false;
 	const setTurn = (a) => {
 		turn = a;
 	};
@@ -237,7 +239,6 @@ const gameFlow = (() => {
 		AI = a;
 	};
 	var makeMove = (n) => {
-		console.log('Ding');
 		if (allMoves[n - 1] === '' && turn === 'playerXturn') {
 			allMoves.splice(n - 1, 1, 'X');
 			playerXmoves.push(n);
@@ -265,7 +266,9 @@ const gameFlow = (() => {
 			if (mark === 'X') {
 				playerXmoves.push(compCellChoice + 1);
 				checkScore(playerXmoves, 'X');
-				setTurn('playerOturn');
+				if (gameOver === false) {
+					setTurn('playerOturn');
+				}
 			} else if (mark === 'O') {
 				playerOmoves.push(compCellChoice + 1);
 				checkScore(playerOmoves, 'O');
@@ -302,6 +305,7 @@ const gameFlow = (() => {
 			gameBoard.message.textContent = player + ' Wins';
 			turn = '';
 			AI = 'dead';
+			gameOver = true;
 			//Tie
 		} else if (moves.length === 5) {
 			gameBoard.message.textContent = ' Tie';
@@ -316,6 +320,7 @@ const gameFlow = (() => {
 		playerOmoves = [];
 		AI = 'alive';
 		turn = '';
+		gameOver = false;
 	};
 
 	const displayGame = () => {
@@ -337,6 +342,7 @@ const gameFlow = (() => {
 		checkScore,
 		reset,
 		displayGame,
-		AI
+		AI,
+		gameOver
 	};
 })();
