@@ -145,8 +145,7 @@ body {
 }
 
 #XButton,
-#OButton {
-}
+#OButton {}
 
 #gameContainer {
 	display: flex;
@@ -164,4 +163,5 @@ body {
 	text-align: center;
 	line-height: 100px;
 	cursor: pointer;
+	user-select: none;
 }
