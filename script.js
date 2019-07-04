@@ -272,7 +272,9 @@ const gameFlow = (() => {
 			} else if (mark === 'O') {
 				playerOmoves.push(compCellChoice + 1);
 				checkScore(playerOmoves, 'O');
-				setTurn('playerXturn');
+				if (gameOver === false) {
+					setTurn('playerXturn');
+				}
 			}
 
 			displayGame();
