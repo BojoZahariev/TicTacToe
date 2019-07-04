@@ -290,6 +290,67 @@ const gameFlow = (() => {
 	};
 
 	const checkScore = (moves, player) => {
+		if (moves.indexOf(1) !== -1 && moves.indexOf(2) !== -1 && moves.indexOf(3) !== -1) {
+			cells[0].style.color = 'red';
+			cells[1].style.color = 'red';
+			cells[2].style.color = 'red';
+			gameBoard.message.textContent = player + ' Wins';
+			gameFinished();
+			//Tie
+		} else if (moves.indexOf(4) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(6) !== -1) {
+			cells[3].style.color = 'red';
+			cells[4].style.color = 'red';
+			cells[5].style.color = 'red';
+			gameBoard.message.textContent = player + ' Wins';
+			gameFinished();
+		} else if (moves.indexOf(7) !== -1 && moves.indexOf(8) !== -1 && moves.indexOf(9) !== -1) {
+			cells[6].style.color = 'red';
+			cells[7].style.color = 'red';
+			cells[8].style.color = 'red';
+			gameBoard.message.textContent = player + ' Wins';
+			gameFinished();
+		} else if (moves.indexOf(1) !== -1 && moves.indexOf(4) !== -1 && moves.indexOf(7) !== -1) {
+			cells[0].style.color = 'red';
+			cells[3].style.color = 'red';
+			cells[6].style.color = 'red';
+			gameBoard.message.textContent = player + ' Wins';
+			gameFinished();
+		} else if (moves.indexOf(2) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(8) !== -1) {
+			cells[1].style.color = 'red';
+			cells[4].style.color = 'red';
+			cells[7].style.color = 'red';
+			gameBoard.message.textContent = player + ' Wins';
+			gameFinished();
+		} else if (moves.indexOf(3) !== -1 && moves.indexOf(6) !== -1 && moves.indexOf(9) !== -1) {
+			cells[2].style.color = 'red';
+			cells[5].style.color = 'red';
+			cells[8].style.color = 'red';
+			gameBoard.message.textContent = player + ' Wins';
+			gameFinished();
+		} else if (moves.indexOf(4) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(6) !== -1) {
+			cells[3].style.color = 'red';
+			cells[4].style.color = 'red';
+			cells[5].style.color = 'red';
+			gameBoard.message.textContent = player + ' Wins';
+			gameFinished();
+		} else if (moves.indexOf(1) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(9) !== -1) {
+			cells[0].style.color = 'red';
+			cells[4].style.color = 'red';
+			cells[8].style.color = 'red';
+			gameBoard.message.textContent = player + ' Wins';
+			gameFinished();
+		} else if (moves.indexOf(3) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(7) !== -1) {
+			cells[2].style.color = 'red';
+			cells[4].style.color = 'red';
+			cells[6].style.color = 'red';
+			gameBoard.message.textContent = player + ' Wins';
+			gameFinished();
+		} else if (moves.length === 5) {
+			gameBoard.message.textContent = ' Tie';
+			gameFinished();
+		}
+
+		/*
 		if (
 			//checking all of the wining patterns
 			(moves.indexOf(1) !== -1 && moves.indexOf(2) !== -1 && moves.indexOf(3) !== -1) ||
@@ -301,18 +362,25 @@ const gameFlow = (() => {
 			(moves.indexOf(4) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(6) !== -1) ||
 			(moves.indexOf(1) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(9) !== -1) ||
 			(moves.indexOf(3) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(7) !== -1)
-		) {
+		) 
+		
+		{
 			gameBoard.message.textContent = player + ' Wins';
-			turn = '';
-			AI = 'dead';
-			gameOver = true;
+			gameFinished();
+
+			cells[0].style.color = 'red';
 			//Tie
 		} else if (moves.length === 5) {
 			gameBoard.message.textContent = ' Tie';
-			turn = '';
-			AI = 'dead';
-			gameOver = true;
+			gameFinished();
 		}
+		*/
+	};
+
+	const gameFinished = () => {
+		turn = '';
+		AI = 'dead';
+		gameOver = true;
 	};
 
 	const reset = () => {
@@ -322,6 +390,9 @@ const gameFlow = (() => {
 		AI = 'alive';
 		turn = '';
 		gameOver = false;
+		for (i = 0; i < cells.length; i++) {
+			cells[i].style.color = 'black';
+		}
 	};
 
 	const displayGame = () => {
@@ -344,6 +415,7 @@ const gameFlow = (() => {
 		reset,
 		displayGame,
 		AI,
-		gameOver
+		gameOver,
+		gameFinished
 	};
 })();
