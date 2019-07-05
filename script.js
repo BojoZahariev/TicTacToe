@@ -22,14 +22,16 @@ const gameBoard = (() => {
 
 	const startCompEvent = () => {
 		choice.style.display = 'block';
+		OButton.style.color = '#f5f5f5';
+		XButton.style.color = '#f5f5f5';
 	};
 	startComp.addEventListener('click', startCompEvent);
 
 	const startEvent = () => {
 		gameFlow.setAI('dead');
 		gameFlow.setTurn('playerXturn');
-		OButton.style.color = 'black';
-		XButton.style.color = 'black';
+		OButton.style.color = '#f5f5f5';
+		XButton.style.color = '#f5f5f5';
 		choice.style.display = 'none';
 	};
 	startButton.addEventListener('click', startEvent);
@@ -46,14 +48,13 @@ const gameBoard = (() => {
 	const Oevent = () => {
 		OButton.style.color = 'red';
 		XButton.style.color = 'black';
-
 		gameFlow.computerTurn('X');
 	};
 
 	OButton.addEventListener('click', Oevent);
 
 	restart.addEventListener('click', () => {
-		OButton.style.color = 'black';
+		OButton.style.color = '#f5f5f5';
 		XButton.style.color = 'black';
 
 		gameFlow.reset();
@@ -80,7 +81,7 @@ const gameBoard = (() => {
 })();
 
 const gameFlow = (() => {
-	let allMoves = ['', '', '', '', '', '', '', '', ''];
+	let allMoves = [ '', '', '', '', '', '', '', '', '' ];
 	let cells = document.getElementsByClassName('cell');
 	let playerXmoves = [];
 	let playerOmoves = [];
@@ -137,9 +138,9 @@ const gameFlow = (() => {
 	};
 
 	const computerPlay = (myArray) => {
-		var allCells = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+		var allCells = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
 		//exclude all played cells
-		allCells = allCells.filter(function (e) {
+		allCells = allCells.filter(function(e) {
 			return this.indexOf(e) < 0;
 		}, myArray);
 
@@ -147,69 +148,6 @@ const gameFlow = (() => {
 	};
 
 	const checkScore = (moves, player) => {
-		/*
-		if (moves.indexOf(1) !== -1 && moves.indexOf(2) !== -1 && moves.indexOf(3) !== -1) {
-			cells[0].style.color = 'red';
-			cells[1].style.color = 'red';
-			cells[2].style.color = 'red';
-			gameBoard.message.textContent = player + ' Wins';
-			gameFinished();
-		} else if (moves.indexOf(4) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(6) !== -1) {
-			cells[3].style.color = 'red';
-			cells[4].style.color = 'red';
-			cells[5].style.color = 'red';
-			gameBoard.message.textContent = player + ' Wins';
-			gameFinished();
-		} else if (moves.indexOf(7) !== -1 && moves.indexOf(8) !== -1 && moves.indexOf(9) !== -1) {
-			cells[6].style.color = 'red';
-			cells[7].style.color = 'red';
-			cells[8].style.color = 'red';
-			gameBoard.message.textContent = player + ' Wins';
-			gameFinished();
-		} else if (moves.indexOf(1) !== -1 && moves.indexOf(4) !== -1 && moves.indexOf(7) !== -1) {
-			cells[0].style.color = 'red';
-			cells[3].style.color = 'red';
-			cells[6].style.color = 'red';
-			gameBoard.message.textContent = player + ' Wins';
-			gameFinished();
-		} else if (moves.indexOf(2) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(8) !== -1) {
-			cells[1].style.color = 'red';
-			cells[4].style.color = 'red';
-			cells[7].style.color = 'red';
-			gameBoard.message.textContent = player + ' Wins';
-			gameFinished();
-		} else if (moves.indexOf(3) !== -1 && moves.indexOf(6) !== -1 && moves.indexOf(9) !== -1) {
-			cells[2].style.color = 'red';
-			cells[5].style.color = 'red';
-			cells[8].style.color = 'red';
-			gameBoard.message.textContent = player + ' Wins';
-			gameFinished();
-		} else if (moves.indexOf(4) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(6) !== -1) {
-			cells[3].style.color = 'red';
-			cells[4].style.color = 'red';
-			cells[5].style.color = 'red';
-			gameBoard.message.textContent = player + ' Wins';
-			gameFinished();
-		} else if (moves.indexOf(1) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(9) !== -1) {
-			cells[0].style.color = 'red';
-			cells[4].style.color = 'red';
-			cells[8].style.color = 'red';
-			gameBoard.message.textContent = player + ' Wins';
-			gameFinished();
-		} else if (moves.indexOf(3) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(7) !== -1) {
-			cells[2].style.color = 'red';
-			cells[4].style.color = 'red';
-			cells[6].style.color = 'red';
-			gameBoard.message.textContent = player + ' Wins';
-			gameFinished();
-
-			//Tie
-		} else if (moves.length === 5) {
-			gameBoard.message.textContent = ' Tie';
-			gameFinished();
-		}
-*/
-
 		if (
 			//checking all of the wining patterns
 			(moves.indexOf(1) !== -1 && moves.indexOf(2) !== -1 && moves.indexOf(3) !== -1) ||
@@ -221,9 +159,7 @@ const gameFlow = (() => {
 			(moves.indexOf(4) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(6) !== -1) ||
 			(moves.indexOf(1) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(9) !== -1) ||
 			(moves.indexOf(3) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(7) !== -1)
-		)
-
-		{
+		) {
 			gameBoard.message.textContent = player + ' winner';
 			gameFinished();
 
@@ -233,7 +169,6 @@ const gameFlow = (() => {
 			gameBoard.message.textContent = ' Tie';
 			gameFinished();
 		}
-
 	};
 
 	const gameFinished = () => {
@@ -241,37 +176,32 @@ const gameFlow = (() => {
 		AI = 'dead';
 		gameOver = true;
 
-
 		gameBoard.popUp.style.display = 'block';
-
 	};
 
 	const reset = () => {
-		allMoves = ['', '', '', '', '', '', '', '', ''];
+		allMoves = [ '', '', '', '', '', '', '', '', '' ];
 		playerXmoves = [];
 		playerOmoves = [];
 		AI = 'alive';
 		turn = '';
 		gameOver = false;
 		for (i = 0; i < cells.length; i++) {
-			cells[i].style.color = 'black';
-			cells[i].style.backgroundImage = "none";
+			cells[i].style.backgroundImage = 'none';
 		}
 	};
 
 	const displayGame = () => {
 		for (i = 0; i < cells.length; i++) {
-
 			if (allMoves[i] === 'O') {
-				cells[i].style.backgroundImage = "url(images/O.png)";
+				cells[i].style.backgroundImage = 'url(images/O.png)';
 				cells[i].style.backgroundSize = 'cover';
 				cells[i].style.backgroundPosition = 'center';
 			}
 			if (allMoves[i] === 'X') {
-				cells[i].style.backgroundImage = "url(images/X.png)";
+				cells[i].style.backgroundImage = 'url(images/X.png)';
 				cells[i].style.backgroundSize = 'cover';
 				cells[i].style.backgroundPosition = 'center';
-
 			}
 		}
 	};
