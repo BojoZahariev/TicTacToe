@@ -148,6 +148,7 @@ body {
 #OButton {}
 
 #gameContainer {
+	position: relative;
 	display: flex;
 	flex-flow: wrap;
 	width: 400px;
@@ -202,4 +203,17 @@ body {
 .cell:nth-child(9) {
 	border-bottom: none;
 	border-right: none;
+}
+
+#popUp {
+	position: absolute;
+	width: 400px;
+	top: 80px;
+	left: 0;
+	right: 0;
+	margin-left: auto;
+	margin-right: auto;
+	filter: opacity(80%);
+	font-size: 30px;
+	display: none;
 }
