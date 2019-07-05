@@ -80,7 +80,7 @@ const gameBoard = (() => {
 })();
 
 const gameFlow = (() => {
-	let allMoves = [ '', '', '', '', '', '', '', '', '' ];
+	let allMoves = ['', '', '', '', '', '', '', '', ''];
 	let cells = document.getElementsByClassName('cell');
 	let playerXmoves = [];
 	let playerOmoves = [];
@@ -137,9 +137,9 @@ const gameFlow = (() => {
 	};
 
 	const computerPlay = (myArray) => {
-		var allCells = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
+		var allCells = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 		//exclude all played cells
-		allCells = allCells.filter(function(e) {
+		allCells = allCells.filter(function (e) {
 			return this.indexOf(e) < 0;
 		}, myArray);
 
@@ -246,7 +246,7 @@ const gameFlow = (() => {
 	};
 
 	const reset = () => {
-		allMoves = [ '', '', '', '', '', '', '', '', '' ];
+		allMoves = ['', '', '', '', '', '', '', '', ''];
 		playerXmoves = [];
 		playerOmoves = [];
 		AI = 'alive';
@@ -254,12 +254,21 @@ const gameFlow = (() => {
 		gameOver = false;
 		for (i = 0; i < cells.length; i++) {
 			cells[i].style.color = 'black';
+			cells[i].style.backgroundImage = "none";
 		}
 	};
 
 	const displayGame = () => {
 		for (i = 0; i < cells.length; i++) {
 			cells[i].textContent = allMoves[i];
+			if (allMoves[i] === 'O') {
+				cells[i].style.backgroundImage = "url(images/O.png)";
+				cells[i].style.backgroundSize = 'cover';
+			}
+			if (allMoves[i] === 'X') {
+				cells[i].style.backgroundImage = "url(images/X.png)";
+				cells[i].style.backgroundSize = 'cover';
+			}
 		}
 	};
 
