@@ -147,15 +147,23 @@ body {
 #XButton,
 #OButton {}
 
+.container {
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+}
+
 #gameContainer {
 	position: relative;
 	display: flex;
 	flex-flow: wrap;
 	width: 400px;
-	margin: 100px auto;
+	margin: auto;
+
+
 }
-
-
 
 .cell {
 	flex-basis: 32%;
@@ -167,6 +175,8 @@ body {
 	line-height: 100px;
 	cursor: pointer;
 	user-select: none;
+
+
 }
 
 .cell:nth-child(1) {
@@ -208,12 +218,13 @@ body {
 #popUp {
 	position: absolute;
 	width: 400px;
-	top: 80px;
+	top: 100px;
 	left: 0;
 	right: 0;
 	margin-left: auto;
 	margin-right: auto;
-	filter: opacity(80%);
+
 	font-size: 30px;
 	display: none;
+	background-color: aqua;
 }
