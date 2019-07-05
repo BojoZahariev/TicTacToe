@@ -133,25 +133,30 @@ body {
 	text-align: center;
 }
 
+#buttonsTop {
+	position: relative;
+	top: 20px;
+}
+
 #choice {
 	position: absolute;
 	display: none;
 	width: 200px;
 	height: 100px;
-	left: 0;
-	right: 0;
-	margin-left: auto;
-	margin-right: auto;
+	top: 20px;
 }
 
-#XButton,
-#OButton {}
+
 
 .container {
 	height: 100vh;
 	display: flex;
+	flex-flow: column;
 	align-items: center;
 	justify-content: center;
+	background-image: url(images/wood-1759566_1920s.jpg);
+	background-size: cover;
+	background-position: center;
 
 }
 
@@ -159,7 +164,7 @@ body {
 	position: relative;
 	display: flex;
 	flex-flow: wrap;
-	width: 400px;
+	width: 500px;
 	margin: auto;
 
 
@@ -167,16 +172,13 @@ body {
 
 .cell {
 	flex-basis: 32%;
-	border: 1px solid #222;
-	height: 100px;
-	background-color: white;
+	border: 1px solid #f3f2f2;
+	height: 150px;
 	font-size: 30px;
 	text-align: center;
 	line-height: 100px;
 	cursor: pointer;
 	user-select: none;
-
-
 }
 
 .cell:nth-child(1) {
@@ -223,8 +225,7 @@ body {
 	right: 0;
 	margin-left: auto;
 	margin-right: auto;
-
 	font-size: 30px;
 	display: none;
-	background-color: aqua;
+	color: #fff;
 }
