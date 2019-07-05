@@ -224,7 +224,7 @@ const gameFlow = (() => {
 		)
 
 		{
-			gameBoard.message.textContent = player + ' Wins';
+			gameBoard.message.textContent = player + ' winner';
 			gameFinished();
 
 			cells[0].style.color = 'red';
