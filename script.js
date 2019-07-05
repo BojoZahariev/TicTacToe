@@ -60,6 +60,7 @@ const gameBoard = (() => {
 		gameFlow.displayGame();
 		message.textContent = '';
 		choice.style.display = 'none';
+		gameBoard.popUp.style.display = 'none';
 	});
 
 	return {
@@ -239,7 +240,7 @@ const gameFlow = (() => {
 		AI = 'dead';
 		gameOver = true;
 
-		setTimeout(function() {
+		setTimeout(() => {
 			gameBoard.popUp.style.display = 'block';
 		}, 1000);
 	};
