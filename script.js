@@ -147,6 +147,7 @@ const gameFlow = (() => {
 	};
 
 	const checkScore = (moves, player) => {
+		/*
 		if (moves.indexOf(1) !== -1 && moves.indexOf(2) !== -1 && moves.indexOf(3) !== -1) {
 			cells[0].style.color = 'red';
 			cells[1].style.color = 'red';
@@ -207,8 +208,8 @@ const gameFlow = (() => {
 			gameBoard.message.textContent = ' Tie';
 			gameFinished();
 		}
+*/
 
-		/*
 		if (
 			//checking all of the wining patterns
 			(moves.indexOf(1) !== -1 && moves.indexOf(2) !== -1 && moves.indexOf(3) !== -1) ||
@@ -220,8 +221,8 @@ const gameFlow = (() => {
 			(moves.indexOf(4) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(6) !== -1) ||
 			(moves.indexOf(1) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(9) !== -1) ||
 			(moves.indexOf(3) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(7) !== -1)
-		) 
-		
+		)
+
 		{
 			gameBoard.message.textContent = player + ' Wins';
 			gameFinished();
@@ -232,7 +233,7 @@ const gameFlow = (() => {
 			gameBoard.message.textContent = ' Tie';
 			gameFinished();
 		}
-		*/
+
 	};
 
 	const gameFinished = () => {
@@ -240,9 +241,9 @@ const gameFlow = (() => {
 		AI = 'dead';
 		gameOver = true;
 
-		setTimeout(() => {
-			gameBoard.popUp.style.display = 'block';
-		}, 1000);
+
+		gameBoard.popUp.style.display = 'block';
+
 	};
 
 	const reset = () => {
@@ -260,14 +261,17 @@ const gameFlow = (() => {
 
 	const displayGame = () => {
 		for (i = 0; i < cells.length; i++) {
-			cells[i].textContent = allMoves[i];
+
 			if (allMoves[i] === 'O') {
 				cells[i].style.backgroundImage = "url(images/O.png)";
 				cells[i].style.backgroundSize = 'cover';
+				cells[i].style.backgroundPosition = 'center';
 			}
 			if (allMoves[i] === 'X') {
 				cells[i].style.backgroundImage = "url(images/X.png)";
 				cells[i].style.backgroundSize = 'cover';
+				cells[i].style.backgroundPosition = 'center';
+
 			}
 		}
 	};
