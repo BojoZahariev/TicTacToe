@@ -18,6 +18,7 @@ const gameBoard = (() => {
 	var startComp = document.getElementById('startComp');
 	var restart = document.getElementById('restart');
 	var choice = document.getElementById('choice');
+	var popUp = document.getElementById('popUp');
 
 	const startCompEvent = () => {
 		choice.style.display = 'block';
@@ -72,7 +73,8 @@ const gameBoard = (() => {
 		Oevent,
 		message,
 		restart,
-		choice
+		choice,
+		popUp
 	};
 })();
 
@@ -150,7 +152,6 @@ const gameFlow = (() => {
 			cells[2].style.color = 'red';
 			gameBoard.message.textContent = player + ' Wins';
 			gameFinished();
-			//Tie
 		} else if (moves.indexOf(4) !== -1 && moves.indexOf(5) !== -1 && moves.indexOf(6) !== -1) {
 			cells[3].style.color = 'red';
 			cells[4].style.color = 'red';
@@ -199,6 +200,8 @@ const gameFlow = (() => {
 			cells[6].style.color = 'red';
 			gameBoard.message.textContent = player + ' Wins';
 			gameFinished();
+
+			//Tie
 		} else if (moves.length === 5) {
 			gameBoard.message.textContent = ' Tie';
 			gameFinished();
@@ -235,6 +238,10 @@ const gameFlow = (() => {
 		turn = '';
 		AI = 'dead';
 		gameOver = true;
+
+		setTimeout(function() {
+			gameBoard.popUp.style.display = 'block';
+		}, 1000);
 	};
 
 	const reset = () => {
