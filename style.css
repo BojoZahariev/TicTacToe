@@ -143,7 +143,7 @@ body {
 	display: none;
 	width: 200px;
 	height: 100px;
-	top: 20px;
+	top: 30px;
 }
 
 
@@ -157,6 +157,7 @@ body {
 	background-image: url(images/wood-1759566_1920s.jpg);
 	background-size: cover;
 	background-position: center;
+	font-family: 'Fondamento', cursive;
 
 }
 
@@ -225,7 +226,12 @@ body {
 	right: 0;
 	margin-left: auto;
 	margin-right: auto;
-	font-size: 30px;
+	font-size: 50px;
 	display: none;
 	color: #fff;
+}
+
+#message {
+	font-family: 'Fondamento', cursive;
+	font-size: 50px;
 }
