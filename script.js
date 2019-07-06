@@ -1,15 +1,3 @@
-const Player = (mark) => {
-	const getMark = () => mark;
-	const move = () => {};
-	return {
-		getMark,
-		move
-	};
-};
-
-const playerX = Player('X');
-const playerO = Player('O');
-
 const gameBoard = (() => {
 	var message = document.getElementById('message');
 	var XButton = document.getElementById('XButton');
@@ -19,6 +7,7 @@ const gameBoard = (() => {
 	var restart = document.getElementById('restart');
 	var choice = document.getElementById('choice');
 	var popUp = document.getElementById('popUp');
+	var buttonBottom = document.getElementById('buttonBottom');
 
 	const startCompEvent = () => {
 		choice.style.display = 'block';
@@ -53,7 +42,7 @@ const gameBoard = (() => {
 
 	OButton.addEventListener('click', Oevent);
 
-	restart.addEventListener('click', () => {
+	const restartEvent = () => {
 		OButton.style.color = '#f5f5f5';
 		XButton.style.color = 'black';
 
@@ -62,7 +51,11 @@ const gameBoard = (() => {
 		message.textContent = '';
 		choice.style.display = 'none';
 		gameBoard.popUp.style.display = 'none';
-	});
+	}
+
+	restart.addEventListener('click', restartEvent);
+
+	buttonBottom.addEventListener('click', restartEvent);
 
 	return {
 		startButton,
@@ -76,12 +69,14 @@ const gameBoard = (() => {
 		message,
 		restart,
 		choice,
-		popUp
+		popUp,
+		buttonBottom,
+		restartEvent
 	};
 })();
 
 const gameFlow = (() => {
-	let allMoves = [ '', '', '', '', '', '', '', '', '' ];
+	let allMoves = ['', '', '', '', '', '', '', '', ''];
 	let cells = document.getElementsByClassName('cell');
 	let playerXmoves = [];
 	let playerOmoves = [];
@@ -138,9 +133,9 @@ const gameFlow = (() => {
 	};
 
 	const computerPlay = (myArray) => {
-		var allCells = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
+		var allCells = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 		//exclude all played cells
-		allCells = allCells.filter(function(e) {
+		allCells = allCells.filter(function (e) {
 			return this.indexOf(e) < 0;
 		}, myArray);
 
@@ -180,7 +175,7 @@ const gameFlow = (() => {
 	};
 
 	const reset = () => {
-		allMoves = [ '', '', '', '', '', '', '', '', '' ];
+		allMoves = ['', '', '', '', '', '', '', '', ''];
 		playerXmoves = [];
 		playerOmoves = [];
 		AI = 'alive';
