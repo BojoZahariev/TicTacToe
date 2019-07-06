@@ -9,12 +9,6 @@ const gameBoard = (() => {
 	var popUp = document.getElementById('popUp');
 	var buttonBottom = document.getElementById('buttonBottom');
 
-	const startCompEvent = () => {
-		choice.style.display = 'block';
-		OButton.style.color = '#f5f5f5';
-		XButton.style.color = '#f5f5f5';
-	};
-	startComp.addEventListener('click', startCompEvent);
 
 	const startEvent = () => {
 		gameFlow.setAI('dead');
@@ -22,39 +16,54 @@ const gameBoard = (() => {
 		OButton.style.color = '#f5f5f5';
 		XButton.style.color = '#f5f5f5';
 		choice.style.display = 'none';
+
+		startComp.removeEventListener('click', startCompEvent);
 	};
-	startButton.addEventListener('click', startEvent);
+
+	const startCompEvent = () => {
+		choice.style.display = 'block';
+		OButton.style.color = '#f5f5f5';
+		XButton.style.color = '#f5f5f5';
+
+		startButton.removeEventListener('click', startEvent);
+	};
 
 	const Xevent = () => {
 		XButton.style.color = 'red';
 		OButton.style.color = 'black';
 
 		gameFlow.setTurn('playerXturn');
+		OButton.removeEventListener('click', Oevent);
 	};
-
-	XButton.addEventListener('click', Xevent);
 
 	const Oevent = () => {
 		OButton.style.color = 'red';
 		XButton.style.color = 'black';
-		gameFlow.computerTurn('X');
-	};
 
-	OButton.addEventListener('click', Oevent);
+		gameFlow.computerTurn('X');
+		XButton.removeEventListener('click', Xevent);
+	};
 
 	const restartEvent = () => {
 		OButton.style.color = '#f5f5f5';
 		XButton.style.color = 'black';
-
-		gameFlow.reset();
-		gameFlow.displayGame();
 		message.textContent = '';
 		choice.style.display = 'none';
 		gameBoard.popUp.style.display = 'none';
+
+		gameFlow.reset();
+		gameFlow.displayGame();
+		startButton.addEventListener('click', startEvent);
+		startComp.addEventListener('click', startCompEvent);
+		XButton.addEventListener('click', Xevent);
+		OButton.addEventListener('click', Oevent);
 	}
 
+	startButton.addEventListener('click', startEvent);
+	startComp.addEventListener('click', startCompEvent);
+	XButton.addEventListener('click', Xevent);
+	OButton.addEventListener('click', Oevent);
 	restart.addEventListener('click', restartEvent);
-
 	buttonBottom.addEventListener('click', restartEvent);
 
 	return {
