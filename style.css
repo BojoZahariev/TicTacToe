@@ -135,21 +135,21 @@ body {
 
 #buttonsTop {
 	position: relative;
-
 }
 
 #startComp,
 #Start,
 #buttonBottom,
 #restart {
-	color: #f5f5f5;
+	color: #ced3dc;
 	padding: 10px;
 	width: 200px;
 	display: inline-block;
-	border: 1px solid #f5f5f5;
+	border: 1px solid #ced3dc;
 	margin: 10px;
 	cursor: pointer;
 	font-size: 18px;
+	user-select: none;
 }
 
 #startComp:hover,
@@ -159,8 +159,6 @@ body {
 	padding-bottom: 11px;
 }
 
-
-
 #XButton,
 #OButton {
 	font-size: 30px;
@@ -169,9 +167,8 @@ body {
 	display: inline;
 	cursor: pointer;
 	padding: 10px;
+	user-select: none;
 }
-
-
 
 #choice {
 	position: absolute;
@@ -183,8 +180,6 @@ body {
 	bottom: 30px;
 }
 
-
-
 .container {
 	height: 100vh;
 	display: flex;
@@ -195,7 +190,6 @@ body {
 	background-size: cover;
 	background-position: center;
 	font-family: 'Fondamento', cursive;
-
 }
 
 #gameContainer {
@@ -208,7 +202,7 @@ body {
 
 .cell {
 	width: 33%;
-	border: 1px solid #f5f5f5;
+	border: 1px solid #faf3dd;
 	height: 150px;
 	font-size: 30px;
 	text-align: center;
