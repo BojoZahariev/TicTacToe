@@ -152,6 +152,13 @@ body {
 	user-select: none;
 }
 
+#startComp:active,
+#Start:active,
+#buttonBottom:active,
+#restart:active {
+	transform: translateY(2px);
+}
+
 #startComp:hover,
 #Start:hover,
 #buttonBottom:hover {
@@ -168,6 +175,11 @@ body {
 	cursor: pointer;
 	padding: 10px;
 	user-select: none;
+}
+
+#buttonBottom {
+	bottom: 50px;
+	position: absolute;
 }
 
 #choice {
@@ -250,7 +262,7 @@ body {
 #popUp {
 	position: absolute;
 	width: 400px;
-	top: 100px;
+	top: 140px;
 	left: 0;
 	right: 0;
 	margin-left: auto;
