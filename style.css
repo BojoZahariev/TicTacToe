@@ -1,3 +1,4 @@
+/*Reset*/
 html,
 body,
 div,
@@ -221,6 +222,7 @@ body {
 	line-height: 100px;
 	cursor: pointer;
 	user-select: none;
+	transition: background-color 1s;
 }
 
 .cell:nth-child(1) {
@@ -270,8 +272,13 @@ body {
 	font-size: 50px;
 	display: none;
 	color: #fff;
+	transition: all 1s;
 }
 
 #message {
 	font-size: 60px;
+}
+
+.winner {
+	background-color: #d7263d;
 }
